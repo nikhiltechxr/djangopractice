@@ -5,19 +5,19 @@ from django.forms import NullBooleanField
 from django.contrib.auth.models import AbstractUser
 from .managers import UserManager
 from django.utils.translation import ugettext_lazy as _
-
+from django.contrib.auth.models import User
 
 
 class Mystudent(models.Model):
-    name=models.CharField(max_length=50, null=True)
-    scholornum=models.IntegerField(default=0, )
+    name=models.CharField(max_length=50, null=True, blank=True)
+    scholornum=models.IntegerField(default=0)
 
 class Myteacher(models.Model):
-    name=models.CharField(max_length=50)
+    name=models.CharField(max_length=50, null=True)
     serialno=models.IntegerField(default=0)
     
 class MyRegisterUser(AbstractUser):
-    
+    username=None
     email=models.EmailField(max_length=50, unique=True,blank=True, null=True)
     name=models.CharField(max_length=50,blank=True, null=True)
     mobile=models.IntegerField(null=True, blank=True)
